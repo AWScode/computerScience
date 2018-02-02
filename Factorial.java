@@ -9,13 +9,13 @@ public class Factorial{
     System.out.println("Input a number:");
     Scanner sc = new Scanner(System.in);
     int j = sc.nextInt();
-    int k = 1;
+    long k = 1;
 
     for (int i = 1;i <= j ;i++ ){
       k = k*i;
     }
 
-    System.out.println(Integer.toString(k));
+    System.out.println("This number's factorial is " + Long.toString(k));
 
   }
 }
