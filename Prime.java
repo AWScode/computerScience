@@ -1,41 +1,75 @@
 import java.util.*;
 import java.math.*;
 
-public class Prime {
-  public static boolean isPrime(int number) {
-    for (int a = 2; a <= number/2; a++) {
-        if (number % a == 0) {
-            return false;
-        }
-        else{
-          return true;
-        }
-      }
-    return true;
-    }
+public class Prime{
 
-  public static int nextPrime(int x){
-    int j = x + 1;
-    while(true){
-      if(isPrime(x)){
+
+  public static long mersennePrime(int power){
+    long finalM = 0;
+    for(int i = 1; i<power;i++){
+      long Mnum = (2^i)-1;
+      if(checkPrime(Mnum)){
+        finalM = Mnum;
+      }
+    }
+    return finalM;
+  }
+
+  public static void printPrimeFactors(int num) {
+    if (num == 2) {
+      System.out.println(num);
+    }
+    for (int i = 2; i <= num; i++) {
+      if (num%i == 0) {
+        System.out.println(i);
+        printPrimeFactors(num/i);
+        //num = num/i;
         break;
       }
-      else{
-        j = j + 1;
+    }
+  }
+
+  public static boolean checkPrime(long check) {
+    boolean isPrime = true;
+    for (int i = 2; i < check; i++) {
+      // '%' is the mod operator. It tells you what the remainder
+      // is if you were to divide the two numbers.
+      if (check%i == 0) {
+        isPrime = false;
+        break;
       }
     }
-    System.out.println(Integer.toString(j));
-    return j;
-
+    return isPrime;
   }
 
 
+  public static int nextPrime(int x) {
+    int next = x + 1;
+    while (true) {
+      if (checkPrime(next)) {
+        break;
+      }
+      else {
+        next = next + 1;
+      }
+    }
+    return next;
+  }
+
+//create main
   public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    int i = sc.nextInt();
-    System.out.println("Enter a number: ");
-    sc.close();
-    nextPrime(i);
-  }
 
+    //create prompt
+    System.out.println("Welcome to Prime. Please give me a number.");
+    //create Scanner
+    Scanner userIn = new Scanner(System.in);
+    //take integer input from user and create a variable with it.
+    int baseNum = userIn.nextInt();
+    //pass baseNum to the nextPrime methods
+    long result = mersennePrime(baseNum);
+    System.out.println(result);
+
+
+
+  }
 }
