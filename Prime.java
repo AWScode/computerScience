@@ -4,16 +4,17 @@ import java.math.*;
 public class Prime{
 
 
-  public static long mersennePrime(int power){
-    long finalM = 0;
+  public static double mersennePrime(int power){
+    double finalM = 0;
     for(int i = 1; i<power;i++){
-      long Mnum = (2^i)-1;
-      if(checkPrime(Mnum)){
-        finalM = Mnum;
+      double mNum = Math.pow(2,1)-1;
+      if(checkPrime(mNum)){
+        finalM = mNum;
       }
     }
     return finalM;
   }
+  
 
   public static void printPrimeFactors(int num) {
     if (num == 2) {
@@ -29,11 +30,9 @@ public class Prime{
     }
   }
 
-  public static boolean checkPrime(long check) {
+  public static boolean checkPrime(double check) {
     boolean isPrime = true;
     for (int i = 2; i < check; i++) {
-      // '%' is the mod operator. It tells you what the remainder
-      // is if you were to divide the two numbers.
       if (check%i == 0) {
         isPrime = false;
         break;
@@ -56,17 +55,15 @@ public class Prime{
     return next;
   }
 
-//create main
   public static void main(String[] args) {
 
-    //create prompt
     System.out.println("Welcome to Prime. Please give me a number.");
-    //create Scanner
+
     Scanner userIn = new Scanner(System.in);
-    //take integer input from user and create a variable with it.
+
     int baseNum = userIn.nextInt();
-    //pass baseNum to the nextPrime methods
-    long result = mersennePrime(baseNum);
+
+    double result = mersennePrime(baseNum);
     System.out.println(result);
 
 
