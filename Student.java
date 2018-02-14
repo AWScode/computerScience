@@ -1,31 +1,34 @@
 public class Student{
+  //P5
 
   private static String name;
-  private static String class;
-  private static String aspect;
-  private static String session;
-  private static Int color;
-  private static Char dream;
+  private static String codeName;
+  private static String persona;
+  private static String confidant;
 
-  public students(String n, String c, String a, String s, Int co, Char d){
+
+  public students(String n, String c, String p, String con){
     this.name = n;
-    this.class = c;
-    this.aspect = a;
-    this.session = s;
-    this.color = co;
-    this.dream = d;
+    this.codeName = c;
+    this.persona = p;
+    this.confidant = con;
   }
 
-  public static void dream(){
-    return this.dream;
+  public static void getname(){
+    return name;
   }
 
-  public static void session(){
-    return this.session;
+  public static void getCodeName(){
+    return codeName;
+  }
+
+  public String getPersona(){
+    return persona;
+  }
+
+  public String getConfidant(){
+    return confidant;
   }
 
 
-  public static void main(String[] args) {
-
-}
 }
