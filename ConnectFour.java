@@ -99,9 +99,9 @@ public class ConnectFour {
 
   // Other methods here
   public void displayBoard(){
-    for (int j = 0; j < 6; j++) {
+    for (int j = 5; j >= 0; j--) {
       String row = "";
-      for (int i = 0; i < 7; i++) {
+      for (int i = 6; i >= 0; i--) {
         row = row + board[i][j] + " ";
       }
       System.out.println(row);
@@ -116,27 +116,25 @@ public class ConnectFour {
       Scanner scanner = new Scanner(System.in);
       int columnInt = scanner.nextInt();
 
-      while(true){
-          if(columnInt > 7){
+
+          if(columnInt > 6){
               System.out.println("That's not a valid column");
-              break;
+
           }
-          if (board[columnInt][0] == "0") {
-              board[columnInt][0] = "1";
-              break;
+          if (board[7 - columnInt][0] == "0") {
+              board[7 - columnInt][0] = "1";
+
           }
-          else if(board[columnInt][0] == "1"){
-            if(board[columnInt][6] == "1"){
-              System.out.println("This  column is full");
-            }
-            for(int k = 1; k < 6; k++){
-              if(board[columnInt][k] == "0"){
-                  board[columnInt][k] = "1";
+          else if(board[7 - columnInt][0] == "1"){
+
+            for(int k = 1; k < 7; k++){
+              if(board[7 - columnInt][k] == "0"){
+                  board[7 - columnInt][k] = "1";
                   break;
                 }
               }
           }
-  }
+
 }
 
   public void checkFour() {
@@ -148,7 +146,7 @@ public class ConnectFour {
   }
 }
 
-  public static void main(String[] args) {
+  public static void main(String[] args)throws IOException {
     ConnectFour newGame = new ConnectFour();
     newGame.displayBoard();
     String player = "1";
@@ -162,7 +160,7 @@ public class ConnectFour {
       System.out.println("It's " + player + "'s turn");
       newGame.addPiece();
       newGame.displayBoard();
-      
+
     }
   }
 }
