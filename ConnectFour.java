@@ -186,7 +186,8 @@ public Boolean checkFourHorizontal(){
       return win;
     }
 
-    public void checkFourDiagonal1(){
+    public Boolean checkFourDiagonal1(){
+      Boolean win = false;
       //check diagonally
       for(int h = 0; h < 6; h++){
         for(int w =0; w < 7; w++){
@@ -194,33 +195,38 @@ public Boolean checkFourHorizontal(){
             if(board[w+1][h+1] == "1"){
               if(board[w+2][h+2] == "1"){
                 if(board[w+3][h+3] == "1"){
-                  System.out.println("Player1 wins");
+                  win = true;
                 }
                 else{
+                  win = false;
                   break;
                 }
               }
               else{
+                win = false;
                 break;
               }
             }
             else{
+              win = false;
               break;
             }
           }
         }
       }
+      return win;
     }
 
-    public void checkFourDiagonal2(){
+    public Boolean checkFourDiagonal2(){
       //check diagonally other way around
+      Boolean win = false;
       for(int h = 6; h >= 0; h--){
         for(int w = 7; w >= 0; w--){
           if(board[w][h] == "1"){
             if(board[w-1][h-1] == "1"){
               if(board[w-2][h-2] == "1"){
                 if(board[w-3][h-3] == "1"){
-                  System.out.println("Player1 wins");
+                  win = true;
                 }
                 else{
                   break;
@@ -236,6 +242,7 @@ public Boolean checkFourHorizontal(){
           }
         }
       }
+      return win;
     }
 
   public static void main(String[] args)throws IOException {
@@ -262,12 +269,19 @@ public Boolean checkFourHorizontal(){
         System.out.println("Player 1 wins");
         break;
       }
-      //newGame.checkFourDiagonal1();
-      //newGame.checkFourDiagonal2();
+      newGame.checkFourDiagonal1();
+      if(newGame.checkFourDiagonal1()){
+        System.out.println("Player 1 wins");
+        break;
+      }
+      /*newGame.checkFourDiagonal2();
+      if(newGame.checkFourDiagonal2()){
+        System.out.println("Player 1 wins");
+        break;*/
+      }
 
     }
   }
-}
 
 
 
