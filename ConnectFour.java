@@ -137,14 +137,96 @@ public class ConnectFour {
 
 }
 
-  public void checkFour() {
+  public void checkFourHorizontal() {
       //when one red is found, look around it
       //for a piece (i,j), look at (i+1,j) (i,j+1) (i+1,j+1) (i-1,j) (i,j-1) (i-1,j-1) (i+1,j-1) (i-1 j+1)
       //find another red piece on the same (i,j) formular
-      for(int a = 0; a < 7; a++){
 
-  }
+      //goes through board horizontally
+      int count = 0;
+      for(int w = 0; 6 > w; w ++){
+          for(int h = 0; 7 > h; h ++){
+              if(board[w][h] == "1"){ //count + 1 if 1
+                  count = count + 1;
+              }
+              else{
+                  count = 0; // count dont change if 0
+              }
+              if(count >= 4){
+                  System.out.println("Player 1 wins"); //if counter is greater or equal to 4, player wins
+              }
+          }
+          break;
+      }
 }
+    public void checkFourVertical(){
+      //check vertically
+      int count = 0;
+      for(int h = 0; 7 > h; h += 1){
+          for(int w = 0; 6 > w; w += 1){
+              if(board[w][h] == "1"){
+                  count = count + 1;
+              }else{
+                  count = 0;
+              }
+              if(count >= 4){
+                  System.out.println("Player 1 wins");
+              }
+          }
+      }
+    }
+
+    public void checkFourDiagonal1(){
+      //check diagonally
+      for(int h = 0; h < 7; h++){
+        for(int w =0; w < 6; w++){
+          if(board[w][h] == "1"){
+            if(board[w+1][h+1] == "1"){
+              if(board[w+2][h+2] == "1"){
+                if(board[w+3][h+3] == "1"){
+                  System.out.println("Player1 wins");
+                }
+                else{
+                  break;
+                }
+              }
+              else{
+                break;
+              }
+            }
+            else{
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    public void checkFourDiagonal2(){
+      //check diagonally other way around
+      for(int h = 7; h >= 0; h--){
+        for(int w = 6; w >= 0; w--){
+          if(board[w][h] == "1"){
+            if(board[w-1][h-1] == "1"){
+              if(board[w-2][h-2] == "1"){
+                if(board[w-3][h-3] == "1"){
+                  System.out.println("Player1 wins");
+                }
+                else{
+                  break;
+                }
+              }
+              else{
+                break;
+              }
+            }
+            else{
+              break;
+            }
+          }
+        }
+      }
+    }
 
   public static void main(String[] args)throws IOException {
     ConnectFour newGame = new ConnectFour();
@@ -160,6 +242,10 @@ public class ConnectFour {
       System.out.println("It's " + player + "'s turn");
       newGame.addPiece();
       newGame.displayBoard();
+      newGame.checkFourHorizontal();
+      newGame.checkFourVertical();
+      //newGame.checkFourDiagonal1();
+      //newGame.checkFourDiagonal2();
 
     }
   }
