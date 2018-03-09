@@ -93,6 +93,8 @@ public class ConnectFour {
   }
 
   // Get and Set Methods here
+
+  //??idk if you would still need this because it's not being used anywhere else?
   public void getPiece(){
 
   }
@@ -137,49 +139,57 @@ public class ConnectFour {
 
 }
 
-  public void checkFourHorizontal() {
-      //when one red is found, look around it
-      //for a piece (i,j), look at (i+1,j) (i,j+1) (i+1,j+1) (i-1,j) (i,j-1) (i-1,j-1) (i+1,j-1) (i-1 j+1)
-      //find another red piece on the same (i,j) formular
-
-      //goes through board horizontally
-      int count = 0;
-      for(int w = 0; 6 > w; w ++){
-          for(int h = 0; 7 > h; h ++){
-              if(board[w][h] == "1"){ //count + 1 if 1
-                  count = count + 1;
-              }
-              else{
-                  count = 0; // count dont change if 0
-              }
-              if(count >= 4){
-                  System.out.println("Player 1 wins"); //if counter is greater or equal to 4, player wins
-              }
+public Boolean checkFourHorizontal(){
+  //check vertically
+  int count = 0;
+  boolean win = false;
+  for(int w = 0; 7 > w; w++){
+      for(int h = 0; 6 > h; h ++){
+          if(board[w][h] == "1"){
+              count = count + 1;
+              win = false;
           }
-          break;
+          else{
+              count = count;
+              win = false; //count = count; try return count does not work as expected
+          }
+          if(count >= 4){
+              win = true;//not working here
+          }
       }
+
+  }
+  return win;
 }
-    public void checkFourVertical(){
+
+
+    public Boolean checkFourVertical(){
       //check vertically
       int count = 0;
-      for(int h = 0; 7 > h; h += 1){
-          for(int w = 0; 6 > w; w += 1){
+      boolean win = false;
+      for(int h = 0; 6 > h; h++){
+          for(int w = 0; 7 > w; w ++){
               if(board[w][h] == "1"){
                   count = count + 1;
-              }else{
-                  count = 0;
+                  win = false;
+              }
+              else{
+                  count = count;
+                  win = false; //count = count; try return count does not work as expected
               }
               if(count >= 4){
-                  System.out.println("Player 1 wins");
+                  win = true;//not working here
               }
           }
+
       }
+      return win;
     }
 
     public void checkFourDiagonal1(){
       //check diagonally
-      for(int h = 0; h < 7; h++){
-        for(int w =0; w < 6; w++){
+      for(int h = 0; h < 6; h++){
+        for(int w =0; w < 7; w++){
           if(board[w][h] == "1"){
             if(board[w+1][h+1] == "1"){
               if(board[w+2][h+2] == "1"){
@@ -204,8 +214,8 @@ public class ConnectFour {
 
     public void checkFourDiagonal2(){
       //check diagonally other way around
-      for(int h = 7; h >= 0; h--){
-        for(int w = 6; w >= 0; w--){
+      for(int h = 6; h >= 0; h--){
+        for(int w = 7; w >= 0; w--){
           if(board[w][h] == "1"){
             if(board[w-1][h-1] == "1"){
               if(board[w-2][h-2] == "1"){
@@ -244,9 +254,21 @@ public class ConnectFour {
       newGame.displayBoard();
       newGame.checkFourHorizontal();
       newGame.checkFourVertical();
+      if(newGame.checkFourVertical()){
+        System.out.println("Player 1 wins");
+        break;
+      }
+      if(newGame.checkFourHorizontal()){
+        System.out.println("Player 1 wins");
+        break;
+      }
       //newGame.checkFourDiagonal1();
       //newGame.checkFourDiagonal2();
 
     }
   }
 }
+
+
+
+//FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFUUUUUUUUUUUUUUUUUU
