@@ -144,17 +144,24 @@ public Boolean checkFourHorizontal(){
   int count = 0;
   boolean win = false;
   for(int w = 0; 7 > w; w++){
-      for(int h = 0; 6 > h; h ++){
+      for(int h = 0; 3 > h; h++){
           if(board[w][h] == "1"){
-              count = count + 1;
-              win = false;
-          }
-          else{
-              count = count;
-              win = false; //count = count; try return count does not work as expected
-          }
-          if(count >= 4){
-              win = true;//not working here
+              if(board[w][h + 1] == "1"){
+                if(board[w][h + 2] == "1"){
+                  if(board[w][h + 3] == "1"){
+                    win = true;
+                  }
+                  else{
+                    win = false;
+                  }
+                }
+                else{
+                  win = false;
+                }
+              }
+              else{
+                win = false;
+              }
           }
       }
 
@@ -163,7 +170,7 @@ public Boolean checkFourHorizontal(){
 }
 
 
-    public Boolean checkFourVertical(){
+    /*public Boolean checkFourVertical(){
       //check vertically
       int count = 0;
       boolean win = false;
@@ -184,7 +191,7 @@ public Boolean checkFourHorizontal(){
 
       }
       return win;
-    }
+    }*/
 
     public Boolean checkFourDiagonal1(){
       Boolean win = false;
@@ -269,11 +276,11 @@ public Boolean checkFourHorizontal(){
         System.out.println("Player 1 wins");
         break;
       }
-      newGame.checkFourDiagonal1();
+      /*newGame.checkFourDiagonal1();
       if(newGame.checkFourDiagonal1()){
         System.out.println("Player 1 wins");
         break;
-      }
+      }*/
       /*newGame.checkFourDiagonal2();
       if(newGame.checkFourDiagonal2()){
         System.out.println("Player 1 wins");
